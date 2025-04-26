@@ -59,6 +59,6 @@ describe('CafeService', () => {
     const req = httpTestingController.expectOne(environment.baseUrl);
     expect(req.request.method).toEqual('GET');
 
-    req.flush(mockCafes); // responde con el mock
+    req.flush(mockCafes);
   });
 });
