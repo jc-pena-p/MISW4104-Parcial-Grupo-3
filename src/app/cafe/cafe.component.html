@@ -1,0 +1,49 @@
+<div class="container mt-4">
+  <h2 class="titulo-cafe">El aroma mágico</h2>
+  <hr class="hr" />
+
+  <div class="card border-0">
+    <img src="assets/images/cafe.jpg" class="img-fluid" alt="Granos de café" />
+  </div>
+
+  <div *ngIf="loading" class="text-center my-4">
+    <app-loading-state></app-loading-state>
+  </div>
+
+  <app-error-state
+    *ngIf="hasError"
+    message="Error al obtener los cafes. Intenta mas tarde"
+  ></app-error-state>
+
+  <app-empty-state
+    *ngIf="!loading && !hasError && cafes.length === 0"
+    message="No hay cafes registrados aún."
+  >
+  </app-empty-state>
+
+  <div
+    class="table-responsive"
+    *ngIf="!loading && !hasError && cafes.length > 0"
+  >
+    <table class="table table-bordered table-hover">
+      <thead class="table-dark text-center">
+        <tr>
+          <th>#</th>
+          <th>Nombre</th>
+          <th>Tipo</th>
+          <th>Región</th>
+        </tr>
+      </thead>
+      <tbody class="text-center">
+        <tr *ngFor="let cafe of cafes; index as i">
+          <td>{{ i + 1 }}</td>
+          <td>{{ cafe.nombre }}</td>
+          <td>{{ cafe.tipo }}</td>
+          <td>{{ cafe.region }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="mt-3"><strong>Total café de origen:</strong> {{ totalOrigen }}</p>
+  <p><strong>Total café blend:</strong> {{ totalBlend }}</p>
+</div>
